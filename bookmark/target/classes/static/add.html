@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Study Material</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <style>
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.15)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+.navbar-custom {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    border-bottom: 1.5px solid #000;
+}
+
+.nav-link-home {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.nav-link-home:hover {
+    color: #000;
+}
+
+/* Dark mode */
+body.dark {
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+        color: #fff;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+}
+
+body.dark .card,
+body.dark .form-control {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border-color: #fff;
+    
+}
+
+body.dark .navbar-custom {
+    background: rgba(0,0,0,0.6);
+    border-color: #fff;
+}
+
+        /* Glass card with black curved border */
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1.5px solid #000;
+            border-radius: 20px;
+        }
+
+        .card-header {
+    background: transparent;   /* remove inner box */
+    border-bottom: none;        /* remove line */
+    color: #000;
+    padding-top: 20px;
+}
+
+
+        /* Transparent inputs */
+        .form-control {
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #000;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+        }
+
+        .form-control::placeholder {
+            color:#000;
+            font-weight: 500;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.45);
+            border-color: rgba(0, 0, 0, 0.7);
+            box-shadow: none;
+        }
+
+        input[type="file"] {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-dark {
+            background: rgba(0, 0, 0, 0.75);
+            border: none;
+            border-radius: 10px;
+        }
+
+        .btn-dark:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        /* ===== DARK MODE TEXT FIX ===== */
+
+/* Navbar text */
+body.dark .navbar-brand,
+body.dark .nav-link-home {
+    color: #fff !important;
+}
+
+/* Form input & textarea text */
+body.dark .form-control {
+    color: #fff !important;
+}
+
+/* Placeholder text */
+body.dark .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Card header text */
+body.dark .card-header h4 {
+    color: #fff;
+}
+
+/* File input text */
+body.dark input[type="file"] {
+    color: #fff;
+}
+
+/* Back button outline fix */
+body.dark .btn-outline-dark {
+    color: #fff;
+    border-color: #fff;
+}
+
+body.dark .btn-outline-dark:hover {
+    background: #fff;
+    color: #000;
+}
+
+    </style>
+</head>
+<script>
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+
+    updateIcon();
+}
+
+function updateIcon() {
+    const icon = document.getElementById("themeIcon");
+
+    if (document.body.classList.contains("dark")) {
+        icon.className = "bi bi-sun-fill";   // Day icon 🌞
+    } else {
+        icon.className = "bi bi-moon-stars-fill"; // Night icon 🌙
+    }
+}
+
+</script>
+
+<body>
+
+<nav class="navbar navbar-custom fixed-top">
+
+    <div class="container-fluid">
+        <span class="navbar-brand" style="color:black;font-weight:700;">
+            Study Material Book
+        </span>
+
+        <div class="d-flex align-items-center gap-3">
+            <!-- Theme toggle -->
+           
+        <a href="index.html" class="nav-link-home">
+    Back
+</a>
+ <button class="btn btn-outline-dark btn-sm" onclick="toggleTheme()">
+                <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+            </button>
+
+    </div>
+    </div>
+</nav>
+<div style="height:20px;"></div>
+<div class="container mt-5 mb-5 pb-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h4>Add Study Material</h4>
+                </div>
+
+                <div class="card-body">
+                    <input class="form-control mb-3" id="title" placeholder="Title" required>
+                    <textarea class="form-control mb-3" id="description" placeholder="Description"></textarea>
+                    <input class="form-control mb-3" id="youtubeLink" placeholder="YouTube Link">
+                    <textarea class="form-control mb-3" id="noteText" placeholder="Notes"></textarea>
+                    <input class="form-control mb-3" type="file" id="pdf">
+                    <input class="form-control mb-4" id="tags" placeholder="Tags (comma separated)">
+                    <center>
+                    <button class="btn btn-dark w-50" onclick="saveMaterial()">Save Material</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function saveMaterial() {
+    let formData = new FormData();
+    formData.append("title", title.value);
+    formData.append("description", description.value);
+    formData.append("youtubeLink", youtubeLink.value);
+    formData.append("noteText", noteText.value);
+    formData.append("tags", tags.value);
+
+    if (pdf.files[0]) {
+        formData.append("pdf", pdf.files[0]);
+    }
+
+    fetch("/add-material", {
+        method: "POST",
+        body: formData
+    })
+    .then(() => {
+        alert("Material Added Successfully!");
+        window.location.href = "index.html";
+    });
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+    }
+
+    updateIcon();
+});
+</script>
+</body>
+</html>
